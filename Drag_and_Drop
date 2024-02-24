@@ -9,10 +9,11 @@ import org.openqa.selenium.interactions.Actions;
 
 public class DragandDrop {
 
-	public static void main(String[] args) throws InterruptedException {
-		WebDriver driver=new ChromeDriver();
-		driver.get("https://demoqa.com/droppable/");
-		Actions actions=new Actions(driver);
+	public static void main(String[] args) throws InterruptedException 
+       {
+	WebDriver driver=new ChromeDriver();
+	driver.get("https://demoqa.com/droppable/");
+	Actions actions=new Actions(driver);
         WebElement source=driver.findElement(By.id("draggable"));
         WebElement target=driver.findElement(By.id("droppable"));
         actions.dragAndDrop(source, target).perform();
@@ -20,15 +21,13 @@ public class DragandDrop {
         Thread.sleep(4000);
         if(text.equalsIgnoreCase("Dropped!"))
         {
-        	System.out.println("Drag and Drop Worked");
+           System.out.println("Drag and Drop Worked");
         }
         else 
         {
-        	System.out.println("Drag and Drop Functionality Failed");
+           System.out.println("Drag and Drop Functionality Failed");
         }
-         driver.quit();
-		
-		
+         driver.quit();	
 	}
 
 }
