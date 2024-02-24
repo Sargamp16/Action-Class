@@ -1,0 +1,31 @@
+package automationFramework;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class clicks {
+
+	public static void main(String[] args) {
+		WebDriver driver=new ChromeDriver();
+		driver.get("http://demoqa.com/buttons");
+		Actions actions=new Actions(driver);
+		WebElement webElement = driver.findElement(By.id("rightClickBtn"));
+		/* contextClick() method first performs mouseMove to the middle of the element location. 
+		 * This function performs the right click at the middle of the web element.
+		 * build() method is used to generate a composite action containing all actions. It is executed internally with the 'perform' method.
+		 * perform() method performs the actions we have specified. But before that, it internally invokes build() method first. 
+		 * After the build, the action is performed.
+		 */
+		actions.contextClick(webElement).perform();
+		
+		String resultText = driver.findElement(By.id("rightClickMessage")).getText();
+        System.out.println("Result after right-click: " + resultText);
+
+       driver.quit();
+		
+		
+	}
+
+}
