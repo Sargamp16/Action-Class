@@ -5,12 +5,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
+
+
 public class clicks {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		WebDriver driver=new ChromeDriver();
 		driver.get("http://demoqa.com/buttons");
 		Actions actions=new Actions(driver);
+		Thread.sleep(4000);
 		WebElement webElement = driver.findElement(By.id("rightClickBtn"));
 		/* contextClick() method first performs mouseMove to the middle of the element location. 
 		 * This function performs the right click at the middle of the web element.
@@ -22,6 +25,12 @@ public class clicks {
 		
 		String resultText = driver.findElement(By.id("rightClickMessage")).getText();
         System.out.println("Result after right-click: " + resultText);
+        
+        WebElement double_click=driver.findElement(By.id("doubleClickBtn"));
+        
+        actions.doubleClick(double_click).perform(); 
+        String resultText2 = driver.findElement(By.id("doubleClickMessage")).getText();
+        System.out.println("Result after double-click: " + resultText2);
 
        driver.quit();
 		
