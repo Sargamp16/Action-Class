@@ -1,0 +1,23 @@
+package automationFramework;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+public class Hover_offset {
+
+	public static void main(String[] args) {
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demoqa.com/slider/");
+		Actions actions=new Actions(driver);
+		WebElement target=driver.findElement(By.id("sliderContainer"));
+		actions.moveToElement(target,50,0).perform();
+    	target.click();
+    	System.out.println("Moved slider in horizontal directions");
+        driver.close();
+
+	}
+
+}
