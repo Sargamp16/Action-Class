@@ -1,0 +1,31 @@
+package automationFramework;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+
+
+
+public class Hover {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demoqa.com/menu/");
+		Actions actions=new Actions(driver);
+		WebElement list=driver.findElement(By.xpath("//*[@id=\"nav\"]/li[2]/a"));
+		actions.moveToElement(list).perform();
+		System.out.println("Hover done for Option1 : Main item 2");
+		WebElement list2=driver.findElement(By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/a"));
+		actions.moveToElement(list2).perform();
+		System.out.println("Hover done for Option1 : SUB SUB list");
+		WebElement list3=driver.findElement(By.xpath("//*[@id=\"nav\"]/li[2]/ul/li[3]/ul/li[1]/a"));
+		actions.moveToElement(list3).click();
+		System.out.println("Hover done for Option1 : SUB SUB item1");
+		driver.close();
+		
+		
+    	
+	}
+
+}
