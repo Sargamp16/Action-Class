@@ -1,0 +1,63 @@
+/*First, navigate to "https://demoqa.com/text-box."
+Secondly, enter the Full name: "Mr.Peter Haynes".
+Thirdly, enter the Email: "PeterHaynes@toolsqa.com."
+After that, Enter the Current Address: "43 School Lane London EC71 9GO".
+Fifthly, click on the Current Address text box and Copy the Current Address.
+After that, paste the copied address in the Permanent Address text box.
+Finally, validate that the text in the Current Address and Permanent Address is the same.
+*/
+
+package automationFramework;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.WebElement;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+
+
+public class Keyboard_event {
+
+	public static void main(String[] args) {
+		
+		WebDriver driver=new ChromeDriver();
+		driver.get("https://demoqa.com/text-box");
+		Actions action=new Actions(driver);
+		WebElement username=driver.findElement(By.id("userName"));
+		username.sendKeys("Mr.Peter Haynes");
+		WebElement email=driver.findElement(By.id("userEmail"));
+		email.sendKeys("PeterHaynes@toolsqa.com");
+		WebElement c_address=driver.findElement(By.id("currentAddress"));
+		c_address.sendKeys("43 School Lane London EC71 9GO");
+		
+		// Select the Current Address using CTRL + A
+		action.keyDown(Keys.COMMAND);
+		action.sendKeys("a");
+		action.keyUp(Keys.COMMAND);
+		action.build().perform();
+		
+		
+		// Copy the Current Address using CTRL + C
+		action.keyDown(Keys.COMMAND);
+		action.sendKeys("c");
+		action.keyUp(Keys.COMMAND);
+		action.build().perform();
+		
+		//Press the TAB Key to Switch Focus to Permanent Address
+		action.sendKeys(Keys.TAB);
+		action.build().perform();
+		
+		//Paste the Address in the Permanent Address field using CTRL + V  
+        // Method Chaining
+    	action.keyDown(Keys.COMMAND).sendKeys("v").keyUp(Keys.COMMAND).build().perform();
+		
+		WebElement p_address=driver.findElement(By.id("permanentAddress"));
+		if(c_address.getAttribute("value").equals(p_address.getAttribute("value")))
+		  System.out.println("Address is same!");
+		else
+			System.out.println("Address is not same!");
+		driver.close();
+	}
+
+}
